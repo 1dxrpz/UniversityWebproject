@@ -1,2 +1,2 @@
 # UniversityWebproject
-[t](https://img.shields.io/badge/Language-C%23-green)
+<img src="https://img.shields.io/badge/Language-C%23-green" />
