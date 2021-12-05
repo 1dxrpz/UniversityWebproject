@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Webproject", "Webproject\Webproject.csproj", "{4AB2F1B9-1F66-4E20-8948-C773FC2210BF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimeWebproject", "AnimeWebproject\AnimeWebproject.csproj", "{D2FA426C-C896-4BD1-A334-6D43D616970E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnimeWebproject", "AnimeWebproject\AnimeWebproject.csproj", "{D2FA426C-C896-4BD1-A334-6D43D616970E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4AB2F1B9-1F66-4E20-8948-C773FC2210BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AB2F1B9-1F66-4E20-8948-C773FC2210BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AB2F1B9-1F66-4E20-8948-C773FC2210BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AB2F1B9-1F66-4E20-8948-C773FC2210BF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2FA426C-C896-4BD1-A334-6D43D616970E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2FA426C-C896-4BD1-A334-6D43D616970E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2FA426C-C896-4BD1-A334-6D43D616970E}.Release|Any CPU.ActiveCfg = Release|Any CPU
