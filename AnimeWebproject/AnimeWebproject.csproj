@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ORM\DxORM\DxORM.csproj" />
     <ProjectReference Include="..\AnimeWebproject.DAL\DAL.csproj" />
+    <ProjectReference Include="..\DxORM\DxORM.csproj" />
   </ItemGroup>
 
 </Project>
