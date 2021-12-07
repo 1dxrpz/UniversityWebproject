@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DAL.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Collections.Generic;
@@ -18,11 +19,7 @@ namespace AnimeWebproject.Controllers
 		}
 		public void OnGet()
 		{
-
-		}
-		public string Action()
-		{
-			return "test";
+			
 		}
 	}
 }
