@@ -12,12 +12,13 @@ namespace AnimeWebproject.Pages
 	public class IndexModel : PageModel
 	{
 		public string test = "Hello world";
-
+		
 		HomeController controller;
 		public IndexModel(ApplicationContext context)
 		{
 			controller = new HomeController(context);
 		}
+
 		public PageResult Get()
 		{
 			return Page();
