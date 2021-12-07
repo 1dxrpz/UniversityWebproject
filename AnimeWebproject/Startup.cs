@@ -22,6 +22,8 @@ namespace AnimeWebproject
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddPostgreSql<ApplicationContext>(Configuration.GetConnectionString("DefaultConnection"));
+			services.AddEncryption((string)Configuration.GetValue(typeof(string), "EncryptionKey"));
 			services.AddRazorPages();
 		}
 
@@ -47,7 +49,7 @@ namespace AnimeWebproject
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapRazorPages();
-				
+				endpoints.MapControllers();
 			});
 		}
 	}
