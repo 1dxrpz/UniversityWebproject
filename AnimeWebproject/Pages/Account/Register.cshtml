@@ -2,34 +2,3 @@
 @model AnimeWebproject.Pages.Account.RegisterModel
 @{
 }
-<form id="login">
-    <input type="text" name="Username" value="" />
-    <button type="submit">Register</button>
-</form>
-@section Scripts{
-    <script>
-        $('#login').on('submit', function (e) {
-            e.preventDefault();
-
-            const data = Object.fromEntries(new FormData(e.target).entries());
-            
-            $.ajax({
-                type: "POST",
-                url: "/api/Account/reg",
-                data: data,
-                success: function (result) {
-                    console.log(result);
-                },
-                error: function (result) {
-                    alert("error:" + result);
-                },
-                complete: function (result) {
-                    //window.location.href = "/Home/index";
-                }
-            });
-        });
-        function Register() {
-            
-        }
-    </script>
-}

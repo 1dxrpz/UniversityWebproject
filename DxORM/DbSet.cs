@@ -110,7 +110,14 @@ namespace DxORM
 		}
 		public T FirstOrDefault(Func<T, bool> predicate)
 		{
-			return Select().FirstOrDefault(predicate);
+			try
+			{
+				return Select().FirstOrDefault(predicate);
+			}
+			catch
+			{
+				return null;
+			}
 		}
 		public void Remove(T model)
 		{
