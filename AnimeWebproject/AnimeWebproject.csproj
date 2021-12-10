@@ -9,4 +9,8 @@
     <ProjectReference Include="..\DxORM\DxORM.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="wwwroot\Images\JoJo%27s_Bizarre_Adventure_logo.png" />
+  </ItemGroup>
+
 </Project>

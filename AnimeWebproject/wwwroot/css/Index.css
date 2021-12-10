@@ -1,0 +1,7 @@
+﻿body {
+}
+
+.main-container{
+    display:flex;
+    justify-items:center;
+}
