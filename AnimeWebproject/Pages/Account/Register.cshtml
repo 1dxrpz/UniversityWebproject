@@ -1,0 +1,70 @@
+﻿@page
+@model AnimeWebproject.Pages.Account.RegisterModel
+@{
+    Layout = "../Shared/_RegLogLayout.cshtml";
+}
+<!--<form id="login">
+    <input type="text" name="Username" value="" />
+    <button type="submit">Register</button>
+</form>-->
+<h1>
+    Registration
+</h1>
+<form>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input type="text" class="form-control" id="exampleInputEmail1">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Email</label>
+        <input type="email" class="form-control" id="exampleInputPassword1">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputEmail1">
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Confirm password</label>
+        <input type="password" class="form-control" id="exampleInputEmail1">
+    </div>
+
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Registration</button>
+    <a class="nav-link" href="/Account/Login">
+        Login
+    </a>
+</form>
+
+@section Scripts{
+    <script>
+        $('#login').on('submit', function (e) {
+            e.preventDefault();
+
+            const data = Object.fromEntries(new FormData(e.target).entries());
+
+            $.ajax({
+                type: "POST",
+                url: "/api/Account/reg",
+                data: data,
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (result) {
+                    alert("error:" + result);
+                },
+                complete: function (result) {
+                    //window.location.href = "/Home/index";
+                }
+            });
+        });
+        function Register() {
+
+        }
+    </script>
+}

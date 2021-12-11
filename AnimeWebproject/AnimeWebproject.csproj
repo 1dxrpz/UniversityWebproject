@@ -5,8 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ORM\DxORM\DxORM.csproj" />
     <ProjectReference Include="..\AnimeWebproject.DAL\DAL.csproj" />
+    <ProjectReference Include="..\DxORM\DxORM.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\JoJo%27s_Bizarre_Adventure_logo.png" />
   </ItemGroup>
 
 </Project>

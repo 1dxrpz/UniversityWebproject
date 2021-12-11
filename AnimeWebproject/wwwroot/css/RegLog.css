@@ -1,0 +1,23 @@
+﻿body {
+    height:100vh;
+    align-items:center;
+    display: flex; 
+    background: #eee;
+}
+
+.box-container{
+    position: relative;
+    width:40%;
+}
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-link {
+    position: relative;
+    display: flex;
+    justify-content: end;
+    width: 80%;
+    padding:  0px 0px 10px 0px;
+}
