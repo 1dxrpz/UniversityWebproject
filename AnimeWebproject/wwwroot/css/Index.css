@@ -4,4 +4,17 @@
 .main-container{
     display:flex;
     justify-items:center;
+
 }
+.images-container{
+    display:flex;
+    position:relative;
+    justify-content:center;
+    flex-direction:row;
+}
+
+
+
+
+
+
