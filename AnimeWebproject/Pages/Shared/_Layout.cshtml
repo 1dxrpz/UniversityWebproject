@@ -6,6 +6,14 @@
     <title>@ViewData["Title"] - AnimeWebproject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        *[data-auth = "false"] {
+            display: none;
+        }
+        *[data-auth = "true"] {
+            display: normal;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -22,7 +30,11 @@
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">
+                                <div class="auth" data-auth="false">
+                                    <div class="profile_username"></div>
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -44,7 +56,27 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://kennethgibson.site/ImageEncoder.js" asp-append-version="true"></script>
 
     @RenderSection("Scripts", required: false)
+    <script>
+        $.ajax({
+            type: "POST",
+            url: "/api/Account/auth",
+            success: function (result) {
+                var auth = result != undefined;
+                $("*[data-auth]").attr("data-auth", auth);
+                if (auth) {
+                    $(".profile_username").text(result.username);
+                }
+            },
+            error: function (result) {
+                alert("error:" + result);
+            },
+            complete: function (result) {
+
+            }
+        });
+    </script>
 </body>
 </html>

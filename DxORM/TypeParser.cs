@@ -12,6 +12,7 @@ namespace DxORM
 			types.Add(typeof(int), "integer");
 			types.Add(typeof(string), "character varying");
 			types.Add(typeof(Guid), "uuid");
+			types.Add(typeof(byte[]), "bytea");
 		}
 
 		public string Parse(Type type)
