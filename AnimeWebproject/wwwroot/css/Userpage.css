@@ -1,0 +1,33 @@
+﻿
+.Userpage_container {
+    margin-top: 100px;
+}
+.Userpage_container .User_info {
+    position: relative;
+}
+.Userpage_container .User_info .image {
+    width: 200px;
+    height: 200px;
+    position: relative;
+}
+    .Userpage_container .User_info .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .Userpage_container .User_info .username {
+        position: absolute;
+        top: 0;
+        left: 220px;
+    }
+    .Userpage_container .User_info .description {
+        position: absolute;
+        top: 40px;
+        left: 220px;
+        height: 80%;
+    }
+    .Userpage_container .User_info .buttons {
+        position: absolute;
+        right: 10px;
+        top: 0;
+    }

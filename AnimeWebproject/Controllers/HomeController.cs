@@ -32,6 +32,7 @@ namespace AnimeWebproject.Controllers
 			user.Username = model.Username;
 			user.Email = model.Email;
 			user.Password = model.Password;
+			user.Description = model.Description;
 			if (model.Avatar != null)
 			{
 				using (var binaryReader = new BinaryReader(model.Avatar.OpenReadStream()))

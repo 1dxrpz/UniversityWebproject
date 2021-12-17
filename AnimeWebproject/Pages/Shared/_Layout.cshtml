@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - AnimeWebproject</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome-free-5.15.4-web/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Userpage.css" />
+    <link rel="stylesheet" href="~/css/FanBase.css" />
+    <link rel="stylesheet" href="~/css/Video.css" />
     <style>
         *[data-auth = "false"] {
             display: none;
@@ -19,22 +23,29 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">AnimeWebproject</a>
+                <a class="navbar-brand">JJBA</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        <li class="nav-item position-relative">
+                            <a class="nav-link text-dark position-absolute" style="left: -250px; top: 0;">
+                                <img src="~/Images/JoJo's_Bizarre_Adventure_logo.png" alt="Alternate Text" height="100" />
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">
-                                <div class="auth" data-auth="false">
-                                    <div class="profile_username"></div>
-                                </div>
-                            </a>
+                            <a class="nav-link text-dark">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark">Fanbase</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark">Seasons</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/Account/Userpage">Account</a>
                         </li>
                     </ul>
                 </div>
@@ -52,6 +63,7 @@
             &copy; 2021 - AnimeWebproject - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

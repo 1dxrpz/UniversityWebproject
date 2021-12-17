@@ -4,10 +4,27 @@
 }
 
 <form id="SettingsForm">
-    <input type="file" name="Avatar" value="" />
-    <input type="text" name="Username" value="" />
-    <input type="email" name="Email" value="" />
-    <button type="submit">send</button>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Username</span>
+        <input type="text" name="Username" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Email</span>
+        <input type="text" name="Email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Password</span>
+        <input type="text" name="Password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupFile01">Upload</label>
+        <input type="file" name="Avatar" class="form-control" id="inputGroupFile01">
+    </div>
+    <div class="input-group">
+        <span class="input-group-text">Description</span>
+        <textarea class="form-control" name="Description" aria-label="Description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary btn-sm">Save</button>
 </form>
 <img id="preview" src="" alt="Alternate Text" />
 
@@ -18,6 +35,11 @@
             url: "/api/Account/user",
             success: function (result) {
                 $("#preview").attr("src", "data:image/png;base64," + result.avatar);
+                $("input[name='Username']").val(result.username);
+                $("input[name='Email']").val(result.email);
+                $("input[name='Username']").val(result.username);
+                $("textarea[name='Description']").val(result.description);
+                $("input[name='Password']").val(result.password);
             },
             error: function (result) {
                 console.log(result);
