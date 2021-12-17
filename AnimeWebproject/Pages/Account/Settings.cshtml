@@ -1,0 +1,47 @@
+﻿@page
+@model AnimeWebproject.Pages.Account.SettingsModel
+@{
+}
+
+<form id="SettingsForm">
+    <input type="file" name="Avatar" value="" />
+    <input type="text" name="Username" value="" />
+    <input type="email" name="Email" value="" />
+    <button type="submit">send</button>
+</form>
+<img id="preview" src="" alt="Alternate Text" />
+
+@section Scripts {
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "/api/Account/user",
+            success: function (result) {
+                $("#preview").attr("src", "data:image/png;base64," + result.avatar);
+            },
+            error: function (result) {
+                console.log(result);
+                alert("error:" + result);
+            },
+            complete: function (result) {
+
+            }
+        });
+        $('#SettingsForm').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/api/Home/settings',
+                data: new FormData($('#SettingsForm')[0]),
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    window.location.reload();
+                },
+                error: function (err) {
+                    console.error(err);
+                }
+            });
+        });
+    </script>
+}

@@ -9,27 +9,29 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AnimeWebproject.Pages.Account
 {
-    public class RegisterModel : PageModel
+    public class SettingsModel : PageModel
     {
 		ApplicationContext db;
 		IJWTAuthManager _jWTAuthManager;
 
-		public RegisterModel(ApplicationContext context, IJWTAuthManager jWTAuthManager)
+		public SettingsModel(ApplicationContext context, IJWTAuthManager jWTAuthManager)
 		{
 			db = context;
 			_jWTAuthManager = jWTAuthManager;
 		}
 
 		public bool isAuthentificated = false;
-        public RedirectResult OnGet()
-        {
-            isAuthentificated = GetUser() != null;
-			if (isAuthentificated)
+
+		public RedirectResult OnGet()
+		{
+			isAuthentificated = GetUser() != null;
+			if (!isAuthentificated)
 			{
-				return Redirect("/home/index");
+				return Redirect("/Account/Login");
 			}
+
 			return null;
-        }
+		}
 		public User GetUser()
 		{
 			if (Request.Cookies["token"] == null || Request.Cookies["token"] == "")

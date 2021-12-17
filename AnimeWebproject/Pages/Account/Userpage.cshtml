@@ -1,0 +1,24 @@
+﻿@page
+@model AnimeWebproject.Pages.Account.UserpageModel
+
+<div id="username"></div>
+<img id="avatar" />
+
+@section Scripts {
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "/api/Account/user",
+            success: function (result) {
+                $("#username").text(result.username);
+                $("#avatar").attr("src", "data:image/png;base64," + result.avatar);
+            },
+            error: function (result) {
+                console.log(result);
+                alert("error:" + result);
+            },
+            complete: function (result) {
+            }
+        });
+    </script>
+}

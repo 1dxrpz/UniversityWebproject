@@ -1,8 +1,11 @@
-﻿using DAL.Models;
+﻿using AnimeWebproject.Models;
+using AnimeWebproject.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -25,6 +28,11 @@ namespace AnimeWebproject.Controllers
 			db = context;
 			_jWTAuthManager = jWTAuthManager;
 		}
+		[HttpPost("auth")]
+		public User PostAuth()
+		{
+			return GetUser();
+		}
 		[HttpPost("reg")]
 		public RequestStatus Post([FromForm] User model)
 		{
@@ -38,6 +46,18 @@ namespace AnimeWebproject.Controllers
 			}
 			return RequestStatus.Fail;
 		}
+		[HttpPost("login")]
+		public RequestStatus PostLogin([FromForm] User model)
+		{
+			var users = db.Users.FirstOrDefault(x => x.Email == model.Email && x.Password == model.Password);
+			if (users == null)
+			{
+				return RequestStatus.Fail;
+			}
+			var token = _jWTAuthManager.Authenticate(users);
+			Response.Cookies.Append("token", token);
+			return RequestStatus.Succsess;
+		}
 		[HttpGet("logout")]
 		public void Logout()
 		{
@@ -45,6 +65,7 @@ namespace AnimeWebproject.Controllers
 			if (token != null)
 				Response.Cookies.Delete("token");
 		}
+		[HttpGet("user")]
 		public User GetUser()
 		{
 			if (Request.Cookies["token"] == null || Request.Cookies["token"] == "")

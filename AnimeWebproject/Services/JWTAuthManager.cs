@@ -1,5 +1,6 @@
-﻿using DAL.Models;
+﻿using AnimeWebproject.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AnimeWebproject.Services
 {
-	public class JWTAuthManager : IJWTAuthManager
+	public class JWTAuthManager : IJWTAuthManager 
 	{
         private readonly string _tokenKey;
 
@@ -43,7 +44,6 @@ namespace AnimeWebproject.Services
                     SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            
             return tokenHandler.WriteToken(token);
         }
     }
