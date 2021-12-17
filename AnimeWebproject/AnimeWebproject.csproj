@@ -14,4 +14,8 @@
     <ProjectReference Include="..\DxORM\DxORM.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pages\Home\" />
+  </ItemGroup>
+
 </Project>
