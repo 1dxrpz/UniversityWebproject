@@ -39,7 +39,15 @@ namespace AnimeWebproject.Controllers
 			var users = db.Users.FirstOrDefault(x => x.Username == model.Username);
 			if (users == null)
 			{
-				db.Users.Add(model);
+				User user = new User()
+				{
+					Avatar = new byte[0],
+					Email = model.Email,
+					Id = Guid.NewGuid(),
+					Password = model.Password,
+					Username = model.Username
+				};
+				db.Users.Add(user);
 				var token = _jWTAuthManager.Authenticate(model);
 				Response.Cookies.Append("token", token);
 				return RequestStatus.Succsess;

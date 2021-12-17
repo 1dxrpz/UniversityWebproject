@@ -1,0 +1,44 @@
+﻿@page
+@model AnimeWebproject.Pages.Video.IndexModel
+@{
+}
+<div class="card video_container">
+    <div class="card-body">
+        <div class="player">
+            <iframe class="video" src="https://www.youtube.com/embed/JrEQRwVEixc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video_info">
+            <div class="Name">
+                <h3>Testname</h3>
+            </div>
+            <div class="description">
+                <h6>Test description Test description Test description Test description </h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card" style="margin-top:20px;">
+    <div class="card-body">
+        <h3>Comments</h3>
+    </div>
+    <form>
+        <div class="input-group">
+            <span class="input-group-text">Write comment</span>
+            <textarea class="form-control" aria-label="Write comment"></textarea>
+            <button type="submit" class="btn btn-secondary">Send</button>
+        </div>
+
+    </form>
+    @for (int i = 0; i < 3; i++)
+    {
+        <div class="comment">
+            <div class="User_info">
+                <div class="avatar">
+                    <img src="#" alt="Alternate Text" />
+                </div>
+                <h6 class="username">Username</h6>
+            </div>
+            <div class="text">Test description Test description Test description Test description</div>
+        </div>
+    }
+</div>
