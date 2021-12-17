@@ -1,6 +1,7 @@
 ﻿using DxORM.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Npgsql;
+using NpgsqlTypes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,18 +41,31 @@ namespace DxORM
 				i++;
 				if (propName.ToString() == "id")
 					item.SetValue(model, (Guid)Convert.ChangeType(Guid.NewGuid(), item.PropertyType));
-				vals += item.PropertyType != typeof(int) ?
-					$"'{item.GetValue(model)}'" : $"{item.GetValue(model)}";
+				vals += item.PropertyType == typeof(int) ?
+					$"{item.GetValue(model)}" :
+					item.PropertyType != typeof(byte[]) ? $"'{item.GetValue(model)}'" : $"@image";
 				if (i != typeof(T).GetProperties().Length)
 				{
 					cols += ',';
 					vals += ',';
 				}
 			}
+
 			string result = $"({cols}) VALUES({vals});";
 			db.connection.Open();
 			var _sql = $"INSERT INTO \"{_name}\" {result};";
 			db.command = new NpgsqlCommand(_sql, db.connection);
+			foreach (var item in typeof(T).GetProperties())
+			{
+				if (item.PropertyType == typeof(byte[]))
+				{
+					NpgsqlParameter param = db.command.CreateParameter();
+					param.ParameterName = "@image";
+					param.NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Bytea;
+					param.Value = item.GetValue(model);
+					db.command.Parameters.Add(param);
+				}
+			}
 			db.command.ExecuteScalar();
 			db.connection.Close();
 		}
@@ -65,8 +79,9 @@ namespace DxORM
 			foreach (var item in typeof(T).GetProperties())
 			{
 				vals += $"{item.Name.ToLower()}=";
-				vals += item.PropertyType != typeof(int) ?
-					$"'{item.GetValue(model)}'" : $"{item.GetValue(model)}";
+				vals += item.PropertyType == typeof(int) ?
+					$"{item.GetValue(model)}" :
+					item.PropertyType != typeof(byte[]) ? $"'{item.GetValue(model)}'" : $"@image";
 				i++;
 				if (i != typeof(T).GetProperties().Length)
 					vals += ',';
@@ -76,6 +91,17 @@ namespace DxORM
 			db.connection.Open();
 			var _sql = $"UPDATE \"{_name}\" {result};";
 			db.command = new NpgsqlCommand(_sql, db.connection);
+			foreach (var item in typeof(T).GetProperties())
+			{
+				if (item.PropertyType == typeof(byte[]))
+				{
+					NpgsqlParameter param = db.command.CreateParameter();
+					param.ParameterName = "@image";
+					param.NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Bytea;
+					param.Value = item.GetValue(model);
+					db.command.Parameters.Add(param);
+				}
+			}
 			db.command.ExecuteScalar();
 			db.connection.Close();
 		}
@@ -110,7 +136,14 @@ namespace DxORM
 		}
 		public T FirstOrDefault(Func<T, bool> predicate)
 		{
-			return Select().FirstOrDefault(predicate);
+			try
+			{
+				return Select().FirstOrDefault(predicate);
+			}
+			catch
+			{
+				return null;
+			}
 		}
 		public void Remove(T model)
 		{

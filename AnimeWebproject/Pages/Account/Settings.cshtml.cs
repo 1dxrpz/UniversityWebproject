@@ -1,33 +1,36 @@
-using AnimeWebproject.Controllers;
-using AnimeWebproject.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
+using AnimeWebproject.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace AnimeWebproject.Pages
+namespace AnimeWebproject.Pages.Account
 {
-	public class IndexModel : PageModel
-	{
+    public class SettingsModel : PageModel
+    {
 		ApplicationContext db;
 		IJWTAuthManager _jWTAuthManager;
 
-		public IndexModel(ApplicationContext context, IJWTAuthManager jWTAuthManager)
+		public SettingsModel(ApplicationContext context, IJWTAuthManager jWTAuthManager)
 		{
 			db = context;
 			_jWTAuthManager = jWTAuthManager;
 		}
-		
+
 		public bool isAuthentificated = false;
-		public PageResult Get()
+
+		public RedirectResult OnGet()
 		{
 			isAuthentificated = GetUser() != null;
-			
-			return Page();
+			if (!isAuthentificated)
+			{
+				return Redirect("/Account/Login");
+			}
+
+			return null;
 		}
 		public User GetUser()
 		{
