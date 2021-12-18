@@ -20,7 +20,8 @@ namespace DxORM
 	{
 		DbContext db;
 		private string _name = "";
-		internal string Name {
+		internal string Name
+		{
 			get => _name;
 			private set { }
 		}
@@ -158,7 +159,8 @@ namespace DxORM
 				db.command = new NpgsqlCommand(_sql, db.connection);
 				db.command.ExecuteScalar();
 				db.connection.Close();
-			} catch { }
+			}
+			catch { }
 		}
 		public bool Exists(Predicate<T> match)
 		{

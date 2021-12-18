@@ -8,9 +8,9 @@ namespace AnimeWebproject.Models
 	public class Video
 	{
 		public Guid Id { get; set; }
-		public String Link { get; set; }
-		public String Name { get; set; }
-		public String Description { get; set; }
+		public string Link { get; set; }
+		public string Name { get; set; }
+		public string Description { get; set; }
 		public int Season { get; set; }
 	}
 }

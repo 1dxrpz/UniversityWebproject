@@ -21,7 +21,7 @@ namespace AnimeWebproject.Controllers
 			return View();
 		}
 		[HttpPost("addVideo")]
-		public RequestStatus Post([FromForm]Video model)
+		public RequestStatus Post([FromForm] Video model)
 		{
 			var video = db.Videos.FirstOrDefault(x => x.Link == model.Link);
 			if (video == null)
@@ -43,6 +43,11 @@ namespace AnimeWebproject.Controllers
 			}
 			else
 				return new Video();
+		}
+		[HttpGet("getVideos")]
+		public List<Video> GetVideos()
+		{
+			return db.Videos.Select();
 		}
 
 		[HttpPost("addComment")]

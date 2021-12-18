@@ -29,18 +29,6 @@
         <button type="submit" class="btn btn-secondary">Send</button>
     </form>
     <div class="comment_section"></div>
-    @for (int i = 0; i < 0; i++)
-    {
-        <div class="comment">
-            <div class="User_info">
-                <div class="avatar">
-                    <img src="#" alt="Alternate Text" />
-                </div>
-                <h6 class="username">Username</h6>
-            </div>
-            <div class="text">Test description Test description Test description Test description</div>
-        </div>
-    }
 </div>
 
 @section Scripts {
@@ -94,22 +82,22 @@
                         var user = GetCommentAuthor(e.author);
                         console.log(user);
                         document.querySelector(".comment_section").innerHTML +=
-                        `<div class="comment">
-                            <div class="User_info">
-                                <div class="avatar">
-                                    <img src="data:image/jpeg;base64,${user.avatar}" alt="Alternate Text" />
+                            `<div class="comment">
+                                <div class="User_info">
+                                    <div class="avatar">
+                                        <img src="data:image/jpeg;base64,${user.avatar}" alt="Alternate Text" />
+                                    </div>
+                                    <h6 class="username">${user.username}</h6>
                                 </div>
-                                <h6 class="username">${user.username}</h6>
-                            </div>
-                            <div class="text">${e.text}</div>
-                        </div>`;
+                                <div class="text">${e.text}</div>
+                            </div>`;
                     });
                 },
                 error: function (result) {
                     alert("error:" + result);
                 },
                 complete: function (result) {
-                    
+
                 },
                 async: false
             });
@@ -161,6 +149,5 @@
                 }
             });
         });
-        // http://img.youtube.com/vi/" + id + "/0.jpg
     </script>
 }
