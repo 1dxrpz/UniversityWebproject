@@ -9,6 +9,7 @@ namespace AnimeWebproject.Models
 	{
 		public Guid Id { get; set; }
 		public Guid Author { get; set; }
+		public Guid VideoId { get; set; }
 		public String Text { get; set; }
 	}
 }

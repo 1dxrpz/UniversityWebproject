@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace AnimeWebproject.Pages.Home
 {
-    public class SeriesModel : PageModel
+    public class SeasonsModel : PageModel
     {
         public void OnGet()
         {

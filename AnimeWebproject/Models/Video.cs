@@ -11,5 +11,6 @@ namespace AnimeWebproject.Models
 		public String Link { get; set; }
 		public String Name { get; set; }
 		public String Description { get; set; }
+		public int Season { get; set; }
 	}
 }
