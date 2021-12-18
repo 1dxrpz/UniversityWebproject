@@ -7,17 +7,11 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/lib/fontawesome-free-5.15.4-web/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Index.css" />
     <link rel="stylesheet" href="~/css/Userpage.css" />
     <link rel="stylesheet" href="~/css/FanBase.css" />
+    <link rel="stylesheet" href="~/css/Seasons.css" />
     <link rel="stylesheet" href="~/css/Video.css" />
-    <style>
-        *[data-auth = "false"] {
-            display: none;
-        }
-        *[data-auth = "true"] {
-            display: normal;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -36,16 +30,19 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark">Home</a>
+                            <a class="nav-link text-dark" href="/index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark">Fanbase</a>
+                            <a class="nav-link text-dark" href="/Home/Seasons">Seasons</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark">Seasons</a>
+                            <a class="nav-link text-dark" href="/Home/About">About JoJo</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" id="account_item">
                             <a class="nav-link text-dark" href="/Account/Userpage">Account</a>
+                        </li>
+                        <li class="nav-item" id="login_item">
+                            <a class="nav-link text-dark" href="/Account/Login">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -77,7 +74,8 @@
             url: "/api/Account/auth",
             success: function (result) {
                 var auth = result != undefined;
-                $("*[data-auth]").attr("data-auth", auth);
+                $("#account_item").css("display", auth ? "block": "none")
+                $("#login_item").css("display", !auth ? "block": "none")
                 if (auth) {
                     $(".profile_username").text(result.username);
                 }

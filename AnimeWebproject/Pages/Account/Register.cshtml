@@ -39,10 +39,6 @@
     <p class="text-danger" id="validate"></p>
 </form>
 
-<form id="logout">
-    <button type="submit">logout</button>
-</form>
-
 @section Scripts{
     <script>
         $('#register').on('submit', function (e) {
@@ -59,7 +55,7 @@
                     if (result == 1) {
                         $("#validate").text("User exists");
                     } else {
-                        window.location.href = "/Home/index";
+                        window.location.href = "/index";
                     }
                 },
                 error: function (result) {
@@ -67,24 +63,6 @@
                 },
                 complete: function (result) {
 
-                }
-            });
-        });
-        $('#logout').on('submit', function (e) {
-            e.preventDefault();
-
-            $.ajax({
-                type: "GET",
-                url: "/api/Account/logout",
-                data: {},
-                success: function (result) {
-                    console.log(result);
-                },
-                error: function (result) {
-                    alert("error:" + result);
-                },
-                complete: function (result) {
-                    window.location.href = "/Home/index";
                 }
             });
         });
