@@ -52,7 +52,7 @@ namespace DxORM.Services
 			var _sql = $"CREATE TABLE IF NOT EXISTS public.\"{table.Name}\"" +
 				"(" +
 				PostgreTypeNotation(typeof(T)) +
-				"CONSTRAINT \"id_pkey\" PRIMARY KEY (\"id\")" +
+				$"CONSTRAINT \"id_{table.Name}_pkey\" PRIMARY KEY (\"id\")" +
 				")" +
 				"TABLESPACE pg_default;" +
 				$"ALTER TABLE public.\"{table.Name}\"" +

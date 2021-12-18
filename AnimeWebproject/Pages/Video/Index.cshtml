@@ -1,0 +1,153 @@
+﻿@page
+@model AnimeWebproject.Pages.Video.IndexModel
+@{
+}
+<div class="card video_container">
+    <div class="card-body">
+        <div class="player">
+            <div id="ytplayer" class="video" type="text/html" frameborder="0"></div>
+        </div>
+        <div class="video_info">
+            <div class="Name">
+                <h3 id="name">Testname</h3>
+            </div>
+            <div class="description">
+                <h6 id="description">Test description Test description Test description Test description </h6>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card" style="margin-top:20px;">
+    <div class="card-body">
+        <h3>Comments</h3>
+    </div>
+    <form id="add_comment">
+        <div class="input-group">
+            <span class="input-group-text">Write comment</span>
+            <textarea id="comment_textarea" class="form-control" aria-label="Write comment"></textarea>
+        </div>
+        <button type="submit" class="btn btn-secondary">Send</button>
+    </form>
+    <div class="comment_section"></div>
+</div>
+
+@section Scripts {
+    <script>
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        var video_id = url.searchParams.get("id");
+        var user_id;
+        window.onload = function () {
+            GetUser();
+        };
+        function GetUser() {
+            $.ajax({
+                type: "GET",
+                url: "/api/Account/user",
+                success: function (result) {
+                    user_id = result.id;
+                    GetVideo();
+                },
+                error: function (result) {
+                    alert("error:" + result);
+                },
+                complete: function (result) {
+                }
+            });
+        }
+        function GetVideo() {
+            $.ajax({
+                type: "GET",
+                url: "/api/Video/getVideo?id=" + video_id,
+                success: function (result) {
+                    $("#name").text(result.name);
+                    $("#description").text(result.description);
+                    SetVideo(result.link);
+                    GetComments();
+                },
+                error: function (result) {
+                    alert("error:" + result);
+                },
+                complete: function (result) {
+                    //window.location.href = "/Home/index";
+                }
+            });
+        }
+        function GetComments() {
+            $.ajax({
+                type: "GET",
+                url: "/api/Video/getComments?video_id=" + video_id,
+                success: function (result) {
+                    result.forEach((e) => {
+                        var user = GetCommentAuthor(e.author);
+                        console.log(user);
+                        document.querySelector(".comment_section").innerHTML +=
+                            `<div class="comment">
+                                <div class="User_info">
+                                    <div class="avatar">
+                                        <img src="data:image/jpeg;base64,${user.avatar}" alt="Alternate Text" />
+                                    </div>
+                                    <h6 class="username">${user.username}</h6>
+                                </div>
+                                <div class="text">${e.text}</div>
+                            </div>`;
+                    });
+                },
+                error: function (result) {
+                    alert("error:" + result);
+                },
+                complete: function (result) {
+
+                },
+                async: false
+            });
+        }
+        function GetCommentAuthor(e) {
+            var user = null;
+            var loaded = false;
+            var a = $.ajax({
+                type: "GET",
+                url: "/api/Account/userid?id=" + e,
+                success: function (result) {
+                    console.log(result);
+                    user = result;
+                },
+                error: function (result) {
+                    alert("error:" + result);
+                },
+                complete: function (result) {
+                    loaded = true;
+                },
+                async: false
+            });
+            console.log("ajajajajajaj");
+            console.log(a.responseJSON);
+            return a.responseJSON;
+        }
+        var player;
+        function SetVideo(e) {
+            var url = new URL(e);
+            var video_id = url.searchParams.get("v");
+            player = new YT.Player('ytplayer', {
+                videoId: video_id,
+                playerVars: {}
+            });
+        }
+        $('#add_comment').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: `/api/Video/addComment?video_id=${video_id}&text=${$("#comment_textarea").val()}&user_id=${user_id}`,
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (result) {
+                    alert("error:" + result);
+                },
+                complete: function (result) {
+                    window.location.reload();
+                }
+            });
+        });
+    </script>
+}

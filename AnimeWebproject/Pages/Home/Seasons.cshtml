@@ -1,0 +1,42 @@
+﻿@page
+@model AnimeWebproject.Pages.Home.SeasonsModel
+@{
+}
+<div class="card seasons_container">
+    <div class="card-body">
+        <div class="accordion" id="Seasons">
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $.ajax({
+            type: "GET",
+            url: "/api/Video/getVideos",
+            success: function (result) {
+                result.forEach((e) => {
+                    console.log(e);
+                    var url = new URL(e.link);
+                    var video_id = url.searchParams.get("v");
+                    var thumbnail = `http://img.youtube.com/vi/${video_id}/0.jpg`;
+                    document.querySelector("#Seasons").innerHTML +=
+                        `<a href="/Video/Index?id=${e.id}" class="video_wrapper">
+                            <div class="image">
+                                <img src="${thumbnail}" alt="Alternate Text" />
+                            </div>
+                            <div class="name">
+                                ${e.name}
+                            </div>
+                        </a>`
+                });
+            },
+            error: function (result) {
+                alert("error:" + result);
+            },
+            complete: function (result) {
+            }
+        });
+    </script>
+}

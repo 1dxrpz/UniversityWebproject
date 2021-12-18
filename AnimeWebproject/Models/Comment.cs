@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace AnimeWebproject.Models
+{
+	public class Comment
+	{
+		public Guid Id { get; set; }
+		public Guid Author { get; set; }
+		public string Text { get; set; }
+		public Guid VideoId { get; set; }
+	}
+}
