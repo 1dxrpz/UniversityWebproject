@@ -93,5 +93,15 @@ namespace AnimeWebproject.Controllers
 			}
 			return user;
 		}
+		[HttpGet("userid")]
+		public User GetUserId(string id)
+		{
+			var user = db.Users.FirstOrDefault(x => x.Id.ToString() == id);
+			if (user == null)
+			{
+				return null;
+			}
+			return user;
+		}
 	}
 }
