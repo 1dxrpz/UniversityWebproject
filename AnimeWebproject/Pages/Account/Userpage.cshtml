@@ -17,7 +17,12 @@
                     <h6 id="description"></h6>
                 </div>
                 <div class="buttons">
-                    <a href="/Account/Settings" class="btn btn-primary btn-sm"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="/Account/Settings" class="btn btn-primary btn-sm">
+                        <i class="fas fa-cog"></i> Settings
+                    </a>
+                    <button href="/Account/Settings" class="btn btn-danger btn-sm" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Log out
+                    </button>
                 </div>
             </div>
         </div>
@@ -49,5 +54,22 @@
             complete: function (result) {
             }
         });
+        function logout() {
+
+            $.ajax({
+                type: "GET",
+                url: "/api/Account/logout",
+                data: {},
+                success: function (result) {
+                    console.log(result);
+                },
+                error: function (result) {
+                    alert("error:" + result);
+                },
+                complete: function (result) {
+                    window.location.href = "/index";
+                }
+            });
+        }
     </script>
 }
